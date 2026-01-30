@@ -28,7 +28,10 @@ const doRegister = async(email, password)=>{
             user : credenciales
         }
     } catch (error) {
-        console.log(error)        
+        console.log("ERROR", error)
+        return{
+            ok:false
+        }
     }
 
 }
@@ -46,7 +49,10 @@ const doLogin = async(email, password)=>{
             user:credenciales
         }
     } catch (error) {
-        console.log(error)        
+        return{
+            mesaje:error,
+            ok:false
+        } 
     }
 
 }

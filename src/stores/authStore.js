@@ -26,9 +26,9 @@ export const useAuthStore = defineStore('autenticacion', () => {
             if(response.ok){
                 return response.user
             }
-
+            console.log("EL LOG DE HACER LOGIN", response)
         } catch (error) {
-            console.log(error, "hacerRegistro authStoreLog")
+            console.log(error, "hacerLogin authStoreLog")
         }
         
     }
@@ -39,7 +39,9 @@ export const useAuthStore = defineStore('autenticacion', () => {
             const res = await logOut()
             return res
         } catch (error) {
-            console.log(error)
+            return{
+                mensaje:error
+            }
         }
 
 

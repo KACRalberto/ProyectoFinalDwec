@@ -35,6 +35,7 @@
                 <button type="submit">Iniciar sesión</button>           
             </form>
             <button @click="registrarse = !registrarse">¿Aún no tienes cuenta? Registrate </button>
+            <button @click="reenviarCorreo">Reenviar correo de verificación</button>
         </div>
     </section>
     
@@ -47,7 +48,7 @@ import { useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
 import { computed } from 'vue';
 import { sendEmail } from '@/services/auth';
-const registrarse = ref(true)
+const registrarse = ref(false)
 const toast = useToast()
 const nombreUser = ref("")
 const emailUser = ref("")
@@ -69,22 +70,33 @@ const getUserRegistered = async()=>{
 
     try {
         
-        if(!theSamePass){
+        if(!theSamePass.value){
             toast.warning("Las contraseñas deben coincidir :/")
             return 
         }
         const response = await auth_.hacerRegistro(emailUser.value, passwordUser.value)
+        toast.info("Usuario registrado :)")
         user.value = response
-    
+        
         const res = await sendEmail()
-        console.log(res.ok)
-        // if(response_enviar){
-        //     toast.info("Compruebe su correo para verificar su cuenta :) {COMPRUEBE MENSJAES DE SPAM}")
-        // }
+
+        if(res.ok){
+            toast.info("Compruebe su correo para verificar su cuenta :) {COMPRUEBE MENSJAES DE SPAM}")
+        }
         
     } catch (error) {
         console.log(error)
     }
+}
+
+
+const reenviarCorreo = async()=>{
+    const res = await sendEmail()
+
+    if(res.ok){
+        toast.info("Compruebe su correo para verificar su cuenta :) {COMPRUEBE MENSJAES DE SPAM}")
+    }
+        
 }
 
 const getUserLoged = async()=>{
@@ -93,10 +105,15 @@ const getUserLoged = async()=>{
     
     try {
         
-        const response = auth_.hacerLogin(emailUser.value, passwordUser.value)
-        user.value = response
-        toast.success("Ha iniciado sesion")
-        router.push("/workspace")
+        const response = await auth_.hacerLogin(emailUser.value, passwordUser.value)
+        console.log(response)
+        if(response.user.emailVerified){
+            toast.info("Bienvenido :)")
+            router.push("/workspace")
+        }else{
+            auth_.cerrarSesion()
+            toast.warning("DEBE VERIFICAR SU CUENTA {REVISE CORREO DE SPAM}")
+        }
 
     } catch (error) {
         console.log(error)

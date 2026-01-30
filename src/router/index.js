@@ -6,25 +6,22 @@ const router = createRouter({
   routes: [
     {path:"/", component: ()=> import("@/views/taskViewPage.vue"), meta:{requiresLogged:true}},
     {path: "/workspace", component: ()=> import("@/views/workSpaceViewPage.vue"), meta:{requiresLogged:true}},
-    {path : "/auth", component:()=> import("@/views/authViewPage.vue")},
-    {path: "/verification", component: ()=> import ("@/views/verificationViewPage.vue")}
+    {path : "/auth", component:()=> import("@/views/authViewPage.vue"), meta:{isAuth:true}}
   ],
 })
 
 router.beforeEach((to,from,next)=>{
-  const user = auth.currentUser
-  if(to.meta.requiresLogged && !user){
-  
-    next("/auth")
-  
-  }else{
-    // if(user.emailVerified){
-    //   next()
-    // }else{
-    //   next("/verification")
-    // }
-  next()
-  }
+  onAuthStateChanged(auth,(firebaseUser)=>{
+    if(to.meta.isAuth && firebaseUser){
+      next("/")
+    }
+
+    if(to.meta.requiresLogged && !firebaseUser){
+      next("/auth")
+    }else{
+    next()
+    }
+  })
 })
 
 export default router
