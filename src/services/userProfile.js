@@ -70,6 +70,27 @@ export const listaTareas = async(tarea) => {
   }
 }
 
+
+export const actualizarTarea = async(tarea) => {
+  try {
+    const tareasRef = doc(db, "tareas", JSON.stringify(tarea.idTarea))
+    await setDoc(tareasRef, {
+      texto: tarea.texto,
+      completed: tarea.completed,
+      idTarea: tarea.idTarea,
+      asignada:true
+    })
+    return { 
+        ok: true
+     }
+  } catch (error) {
+    console.error(error)
+    return { 
+        ok: false
+     }
+  }
+}
+
 export const recuperarTareas = async()=>{
   try {
     const tareasRef = collection(db, "tareas")
