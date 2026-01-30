@@ -35,7 +35,9 @@
                 <button type="submit">Iniciar sesión</button>           
             </form>
             <button @click="registrarse = !registrarse">¿Aún no tienes cuenta? Registrate </button>
-            <button @click="reenviarCorreo">Reenviar correo de verificación</button>
+            <div v-if="!registrarse && verificado">
+                <button @click="reenviarCorreo">Reenviar correo de verificación</button>
+            </div>
         </div>
     </section>
     
@@ -56,7 +58,7 @@ const passwordUser = ref("")
 const passwordConfirm = ref("")
 const router = useRouter()
 const user = ref()
-
+const verificado = ref(false)
 const theSamePass = computed(()=>{
     return passwordUser.value === passwordConfirm.value
 })
@@ -113,6 +115,7 @@ const getUserLoged = async()=>{
         }else{
             auth_.cerrarSesion()
             toast.warning("DEBE VERIFICAR SU CUENTA {REVISE CORREO DE SPAM}")
+            verificado.value = true
         }
 
     } catch (error) {

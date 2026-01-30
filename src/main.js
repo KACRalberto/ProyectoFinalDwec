@@ -4,6 +4,7 @@ import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css"
 import App from './App.vue'
 import router from './router'
+import "@/tailwind/style.css"
 
 const app = createApp(App)
 

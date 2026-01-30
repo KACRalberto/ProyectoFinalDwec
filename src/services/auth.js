@@ -94,8 +94,10 @@ const sendEmail = async()=>{
     }
 }
 
+const conseguirUser = ()=>{
+    return user.value
+}
 
 
 
-
-export {doLogin, doRegister, logOut, sendEmail, user}
+export {doLogin, doRegister, logOut, sendEmail, user, conseguirUser }
