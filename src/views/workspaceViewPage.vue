@@ -1,5 +1,5 @@
 <template>
-    <section class="w-full flex flex-col justify-center items-center">
+    <section class="w-full flex flex-col justify-center items-center p-5 h-[92vh]">
         <h1 class="text-4xl font-[600]">Mi zona de tareas</h1>
         <div v-if="cargando">
             <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif" alt="">
@@ -7,7 +7,7 @@
 
         <div v-if="!cargando" class="flex flex-col items-center gap-5">
             <div v-if="listaUserTareas != 0" class="grid grid-cols-1 gap-10 lg:grid-cols-4 items-center justify-center p-10">
-                <div v-for="(task,index) in listaUserTareas" :key="index" class="rounded-xl shadow-lg flex flex-col items-center p-3 lg:w-90 lg:h-60">
+                <div v-for="(task,index) in listaUserTareas" :key="index" class="rounded-xl shadow-lg flex flex-col items-center p-3 lg:w-90 lg:h-60 bg-gray-200 ">
                 <div class="flex flex-col">
                     <div class="flex items-center gap-2">
                         <span class="font-[600]">TAREA Nº</span>

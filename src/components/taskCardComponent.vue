@@ -1,5 +1,5 @@
 <template>
-    <div v-if="cargando">
+    <div v-if="cargando" class="h-[100vh]">
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif" alt="">
     </div>
     <div v-if="!cargando" class="flex flex-col items-center p-3">
@@ -11,7 +11,7 @@
             <option value="" class="text-blue-800">TODAS</option>
         </select>
         <div class="grid grid-cols-1 gap-10 lg:grid-cols-4 items-center justify-center p-10">
-            <div v-for="(task,index) in tareasFiltradas" :key="index" class="rounded-xl shadow-2xl flex flex-col items-center p-3 lg:w-90 lg:h-60">
+            <div v-for="(task,index) in tareasFiltradas" :key="index" class="rounded-xl shadow-2xl flex flex-col items-center p-3 lg:w-90 lg:h-60 bg-gray-200">
                 <div class="flex flex-col">
                     <div class="flex items-center gap-2">
                         <span class="font-[600]">TAREA Nº</span>

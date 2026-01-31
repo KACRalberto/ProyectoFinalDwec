@@ -18,7 +18,15 @@ onAuthStateChanged(auth,(firebaseUser)=>{
       </div>
     </nav>
   </header>
-  <router-view></router-view>
+  <main>
+    <router-view></router-view>
+  </main>
 </template>
 
-<style scoped></style>
+<style lang="sass" scoped>
+main
+  background: #0e2626
+  background: linear-gradient(0deg,rgba(14, 38, 38, 1) 0%, rgba(255, 255, 255, 1) 100%)
+
+  
+</style>

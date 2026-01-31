@@ -1,15 +1,8 @@
 <template>
     <section>
         <div v-if="registrarse" class="w-[80vh] flex flex-col items-center">
-            <form @submit.prevent="getUserRegistered" class="flex flex-col items-center gap-5 p-5 px-15 rounded-xl shadow-2xl">
+            <form @submit.prevent="getUserRegistered" class="flex flex-col items-center gap-5 p-5 px-15 rounded-xl shadow-2xl bg-gray-200">
                 <h1 class="text-2xl">Registre su usuario</h1>
-                <div class="flex flex-col text-center">
-                    <label class="text-start text-xl">Nombre</label>
-                    <div class=" rounded-xl hover:outline-double hover:outline-green-200 focus:outline-dashed focus-within:outline-dashed focus-within:outline-green-200 bg-gray-200">
-                        <input class="p-2 outline-none" type="text" placeholder="Su nombre" v-model="nombreUser">
-                        <i class="fa-solid fa-person pr-2"></i> 
-                    </div>
-                </div>
                 <div class="flex flex-col text-center">
                     <label class="text-start text-xl">Email</label>
                     <div class="rounded-xl hover:outline-double hover:outline-green-200 focus:outline-dashed focus-within:outline-dashed focus-within:outline-green-200 bg-gray-200">
@@ -33,12 +26,12 @@
                 </div>
                 <button type="submit" class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">Registrarse</button>
             </form>
-            <button @click="registrarse = !registrarse" class="p-2 self-center font-[500]">¿Ya tienes cuenta? <span class="text-blue-600">
+            <button @click="registrarse = !registrarse" class="p-2 self-center font-[500] text-white">¿Ya tienes cuenta? <span class="text-green-500">
             Inicia sesión
             </span></button>
         </div>
         <div v-if="!registrarse" class="w-[80vh] flex flex-col items-center" >
-            <form @submit.prevent="getUserLoged" class="flex flex-col items-center gap-5 p-5 px-15 rounded-xl shadow-2xl">
+            <form @submit.prevent="getUserLoged" class="flex flex-col items-center gap-5 p-5 px-15 rounded-xl shadow-2xl bg-gray-200">
                 <h1 class="text-2xl">Iniciar sesión</h1>
                 <div class="flex flex-col text-center">
                     <label class="text-start text-xl">Email</label>
@@ -56,7 +49,7 @@
                 </div>
                 <button type="submit" class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">Iniciar sesión</button>        
             </form>
-            <button @click="registrarse = !registrarse" class="p-2 self-center font-[500]">¿Aún no tienes cuenta? <span class="text-blue-600">
+            <button @click="registrarse = !registrarse" class="p-2 self-center font-[500] text-white">¿Aún no tienes cuenta? <span class="text-green-500">
             Regístrate
             </span></button>
             <div v-if="!registrarse && verificado">
