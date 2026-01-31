@@ -60,7 +60,7 @@
             Regístrate
             </span></button>
             <div v-if="!registrarse && verificado">
-                <button @click="reenviarCorreo">Reenviar correo de verificación</button>
+                <button @click="reenviarCorreo" class="font-[300] text-red-400">Click aqui para reenviar correo de verificación</button>
             </div>
         </div>
     </section>
@@ -102,10 +102,10 @@ const getUserRegistered = async()=>{
         }
         const response = await auth_.hacerRegistro(emailUser.value, passwordUser.value)
         toast.info("Usuario registrado :)")
-        user.value = response
+        user.value = response.user
         
-        const res = await sendEmail()
-
+        const res = await sendEmail(user.value)
+        
         if(res.ok){
             toast.info("Compruebe su correo para verificar su cuenta :) {COMPRUEBE MENSJAES DE SPAM}")
         }

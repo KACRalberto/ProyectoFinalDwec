@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>TASK</h1>
+    <div class="flex flex-col items-center justify-center">
+        <h1 class="text-2xl">Lista de tareas</h1>
         <taskCardComponent></taskCardComponent>
     </div>
 </template>

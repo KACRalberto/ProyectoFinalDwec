@@ -73,16 +73,17 @@ const logOut = async()=>{
 
 
 //HOW TO USE:
-const sendEmail = async()=>{
+const sendEmail = async(user)=>{
+
     try {
-        console.log(user.value, "LOG DEL USER")
-        if(user.value.emailVerified){
+        console.log(user, "LOG DEL USER")
+        if(user.emailVerified){
             return{
                 mensaje: "Usuario ya verificado"
             }
         }
 
-        await sendEmailVerification(user.value)
+        await sendEmailVerification(user)
 
         return{
             mensaje : "email enviado",
