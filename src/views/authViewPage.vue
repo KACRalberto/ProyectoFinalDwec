@@ -1,40 +1,64 @@
 <template>
     <section>
-        <div v-if="registrarse">
-            <form @submit.prevent="getUserRegistered">
-                <div>
-                    <label>Nombre</label>
-                    <input type="text" placeholder="Su nombre" v-model="nombreUser">
+        <div v-if="registrarse" class="w-[80vh] flex flex-col items-center">
+            <form @submit.prevent="getUserRegistered" class="flex flex-col items-center gap-5 p-5 px-15 rounded-xl shadow-2xl">
+                <h1 class="text-2xl">Registre su usuario</h1>
+                <div class="flex flex-col text-center">
+                    <label class="text-start text-xl">Nombre</label>
+                    <div class=" rounded-xl hover:outline-double hover:outline-green-200 focus:outline-dashed focus-within:outline-dashed focus-within:outline-green-200 bg-gray-200">
+                        <input class="p-2 outline-none" type="text" placeholder="Su nombre" v-model="nombreUser">
+                        <i class="fa-solid fa-person pr-2"></i> 
+                    </div>
                 </div>
-                <div>
-                    <label>Email</label>
-                    <input type="email" placeholder="ejemplo@ejemplo.com" v-model="emailUser">
+                <div class="flex flex-col text-center">
+                    <label class="text-start text-xl">Email</label>
+                    <div class="rounded-xl hover:outline-double hover:outline-green-200 focus:outline-dashed focus-within:outline-dashed focus-within:outline-green-200 bg-gray-200">
+                        <input type="email" class="p-2 outline-none" placeholder="ejemplo@ejemplo.com" v-model="emailUser">
+                        <i class="fa-solid fa-at pr-2"></i>
+                    </div>
                 </div>
-                <div>
-                    <label>Contraseña</label>
-                    <input type="password" placeholder="ejemplo123" v-model="passwordUser">
+                <div class="flex flex-col text-center">
+                    <label class="text-start text-xl">Contraseña</label>
+                    <div class=" rounded-xl hover:outline-double hover:outline-green-200 focus:outline-dashed focus-within:outline-dashed focus-within:outline-green-200 bg-gray-200">
+                        <input type="password" class="p-2 outline-none" placeholder="ejemplo123" v-model="passwordUser">
+                        <i class="fa-solid fa-key pr-2"></i>
+                    </div>
                 </div>
-                <div>
-                    <label>Confirme su contraseña</label>
-                    <input type="password" placeholder="ejemplo123" v-model="passwordConfirm">
+                <div class="flex flex-col text-center">
+                    <label class="text-start text-xl">Confirme su contraseña</label>
+                    <div class="rounded-xl hover:outline-double hover:outline-green-200 focus:outline-dashed focus-within:outline-dashed focus-within:outline-green-200 bg-gray-200">
+                        <input type="password" class="p-2 outline-none" placeholder="ejemplo123" v-model="passwordConfirm">
+                        <i class="fa-solid fa-key pr-2"></i>
+                    </div>
                 </div>
-                <button type="submit">Registrarse</button>
+                <button type="submit" class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">Registrarse</button>
             </form>
-            <button @click="registrarse = !registrarse">¿Ya tienes cuenta? Inicia sesión</button>
+            <button @click="registrarse = !registrarse" class="p-2 self-center font-[500]">¿Ya tienes cuenta? <span class="text-blue-600">
+            Inicia sesión
+            </span></button>
         </div>
-        <div v-if="!registrarse">
-            <form @submit.prevent="getUserLoged">
-                <div>
-                    <label>Email</label>
-                    <input type="email" placeholder="ejemplo@ejemplo.com" v-model="emailUser">
+        <div v-if="!registrarse" class="w-[80vh] flex flex-col items-center" >
+            <form @submit.prevent="getUserLoged" class="flex flex-col items-center gap-5 p-5 px-15 rounded-xl shadow-2xl">
+                <h1 class="text-2xl">Iniciar sesión</h1>
+                <div class="flex flex-col text-center">
+                    <label class="text-start text-xl">Email</label>
+                    <div class=" rounded-xl hover:outline-double hover:outline-green-200 focus:outline-dashed focus-within:outline-dashed focus-within:outline-green-200 bg-gray-200" >
+                        <input type="email" class="p-2 outline-none" placeholder="ejemplo@ejemplo.com" v-model="emailUser">
+                        <i class="fa-solid fa-at pr-2"></i>
+                    </div>
                 </div>
-                <div>
-                    <label>Contraseña</label>
-                    <input type="password" placeholder="ejemplo123" v-model="passwordUser">
+                <div class="flex flex-col text-center">
+                    <label class="text-start text-xl">Contraseña</label>
+                    <div class=" rounded-xl hover:outline-double hover:outline-green-200 focus:outline-dashed focus-within:outline-dashed focus-within:outline-green-200 bg-gray-200">
+                        <input type="password" class="p-2 outline-none" placeholder="ejemplo123" v-model="passwordUser">
+                        <i class="fa-solid fa-key pr-2"></i>
+                    </div>
                 </div>
-                <button type="submit">Iniciar sesión</button>           
+                <button type="submit" class="cursor-pointer transition-all bg-blue-500 text-white px-6 py-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">Iniciar sesión</button>        
             </form>
-            <button @click="registrarse = !registrarse">¿Aún no tienes cuenta? Registrate </button>
+            <button @click="registrarse = !registrarse" class="p-2 self-center font-[500]">¿Aún no tienes cuenta? <span class="text-blue-600">
+            Regístrate
+            </span></button>
             <div v-if="!registrarse && verificado">
                 <button @click="reenviarCorreo">Reenviar correo de verificación</button>
             </div>
@@ -126,5 +150,9 @@ const getUserLoged = async()=>{
 </script>
 
 <style lang="sass" scoped>
-
+section
+    height: 100dvh
+    display: flex
+    justify-content: center
+    align-items: center
 </style>
