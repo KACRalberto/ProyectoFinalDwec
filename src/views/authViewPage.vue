@@ -98,7 +98,8 @@ const getUserRegistered = async()=>{
         user.value = response.user
         
         const res = await sendEmail(user.value)
-        
+        auth_.cerrarSesion()
+        router.push("/auth")
         if(res.ok){
             toast.info("Compruebe su correo para verificar su cuenta :) {COMPRUEBE MENSJAES DE SPAM}")
         }

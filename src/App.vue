@@ -3,9 +3,13 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase/config';
 import { ref } from 'vue';
 const user = ref(null)
+
+
 onAuthStateChanged(auth,(firebaseUser)=>{
   user.value = firebaseUser
+
 })
+
 
 </script>
 
