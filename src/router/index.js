@@ -5,7 +5,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {path:"/", component: ()=> import("@/views/taskViewPage.vue"), meta:{requiresLogged:true}},
-    {path: "/workspace", component: ()=> import("@/views/workSpaceViewPage.vue"), meta:{requiresLogged:true}},
+    {path: "/workspace", component: ()=> import("@/views/workspaceViewPage.vue"), meta:{requiresLogged:true}},
     {path : "/auth", component:()=> import("@/views/authViewPage.vue"), meta:{isAuth:true}}
   ],
 })
