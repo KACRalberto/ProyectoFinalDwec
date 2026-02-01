@@ -1,44 +1,60 @@
-# TaskBoard
+Pequeña aplicación de tareas construida con Vue 3 y Firebase (Firestore + Auth). Permite registrarse/iniciar sesión y gestionar tareas por usuario.
 
-This template should help get you started developing with Vue 3 in Vite.
+Tiene una interfaz sencilla para crear, listar y gestionar tareas. Cada usuario solo ve sus propias tareas. El header permanece visible para navegación.
 
-## Recommended IDE Setup
+Se ha utilizado:
+- Vue 3
+- Vite
+- Firebase (Authentication, Firestore)
+- Tailwind CSS (estilos)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Recommended Browser Setup
+La estructura de este proyecto es:
+- `src/` — Código fuente de la aplicación.
+  - `components/` — Componentes reutilizables (ej. `taskCardComponent.vue`).
+  - `views/` — Vistas principales (`authViewPage.vue`, `taskViewPage.vue`, `workspaceViewPage.vue`).
+  - `firebase/config.js` — Inicialización de Firebase.
+  - `services/` — Lógica relacionada con auth y perfil de usuario.
+  - `stores/` — Pinia/Vuex stores (estado global).
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
 
-## Customize configuration
+Para utilizarlo en local:
+1. Clona el repositorio:
+git clone <repo-url>
+cd ProyectoFinalDwec
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+2. Instala dependencias:
 npm install
-```
 
-### Compile and Hot-Reload for Development
+3. Copia tu configuración de Firebase a `src/firebase/config.js`
 
-```sh
+4. Ejecuta la aplicación en modo desarrollo:
 npm run dev
-```
 
-### Compile and Minify for Production
+-Enlace de vercel : https://proyecto-final-dwec-eta.vercel.app/auth
 
-```sh
-npm run build
-```
 
-### Lint with [ESLint](https://eslint.org/)
+La aplicación usa una colección principal donde cada usuario tiene su documento y dentro de él se almacena la lista de tareas. Ejemplo:
 
-```sh
-npm run lint
+- Colección: `users`
+  - Documento: `{userId}` (ID del usuario de Firebase Auth)
+    - Campo: `tasks` — Array de objetos con las tareas, por ejemplo:
+
+```json
+{
+  "tasks": [
+    {
+      "id": "t1",
+      "title": "Comprar leche",
+      "done": false,
+      "createdAt": 1670000000000
+    },
+    {
+      "id": "t2",
+      "title": "Enviar informe",
+      "done": true,
+      "createdAt": 1670001000000
+    }
+  ]
+}
 ```
