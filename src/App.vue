@@ -25,8 +25,12 @@ onAuthStateChanged(auth,(firebaseUser)=>{
 
 <style lang="sass" scoped>
 main
-  background: #0e2626
-  background: linear-gradient(0deg,rgba(14, 38, 38, 1) 0%, rgba(255, 255, 255, 1) 100%)
+  background-color: white
 
+header
+  position: sticky
+  top: 0
+  z-index: 9999
+  background-color: white
   
 </style>
